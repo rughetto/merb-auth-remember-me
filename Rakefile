@@ -1,10 +1,11 @@
 require 'rubygems'
 require 'rake/gempackagetask'
+require 'spec/rake/spectask'
 
 require 'merb-core'
 require 'merb-core/tasks/merb'
 
-GEM_NAME = "pn-merb-auth-remember-me"
+GEM_NAME = "merb-auth-remember-me"
 GEM_VERSION = "0.0.1"
 AUTHOR = "Surasit Liangpornrattana"
 EMAIL = "punneng@gmail.com"
@@ -23,10 +24,9 @@ spec = Gem::Specification.new do |s|
   s.author = AUTHOR
   s.email = EMAIL
   s.homepage = HOMEPAGE
-  s.add_dependency('merb', '>= 1.0.3')
+  s.add_dependency('merb-core', '>= 1.0')
   s.require_path = 'lib'
   s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
-  
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
@@ -48,4 +48,10 @@ task :gemspec do
   File.open("#{GEM_NAME}.gemspec", "w") do |file|
     file.puts spec.to_ruby
   end
+end
+
+Spec::Rake::SpecTask.new do |t|
+   t.warning = true
+   t.spec_opts = ["--format", "specdoc", "--colour"]
+   t.spec_files = Dir['spec/**/*_spec.rb'].sort   
 end

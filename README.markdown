@@ -34,13 +34,13 @@ Rake tasks to package/install the gem - edit this to modify the manifest.
 
 file: config/dependencies.rb
 
-\# add the plugin as a regular dependency
+# add the plugin as a regular dependency
 
     dependency 'pn-merb-auth-remember-me'
 
 file: slice/merb-auth-slice-password/app/controllers/sessions.rb or the logout action  
 
-\# clear :auth\_token after log out
+# clear :auth\_token after log out
 
     cookies.delete :auth_token
 

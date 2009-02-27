@@ -9,7 +9,7 @@ require 'merb-auth-core'
 require 'merb-auth-more'
 require 'merb-auth-more/mixins/redirect_back'
 require 'spec'
-require 'pn-merb-auth-remember-me'
+require 'merb-auth-remember-me'
 
 Merb.start_environment(
   :testing => true, 
