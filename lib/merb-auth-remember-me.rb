@@ -20,7 +20,7 @@ if defined?(Merb::Plugins)
         user.remember_me
         request.cookies.set_cookie(:auth_token, user.remember_token, :expires => user.remember_token_expires_at.to_time)
       end
-      true if user 
+      user 
     end
   end
   

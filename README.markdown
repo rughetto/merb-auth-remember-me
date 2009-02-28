@@ -1,4 +1,4 @@
-### PnMerbAuthRememberMe
+### MerbAuthRememberMe
 
 This plugin provides a remember me function based on MerbAuth. Most of codes are from [RestfulAuthentication on Rails](http://github.com/technoweenie/restful-authentication/tree/master)  
 
