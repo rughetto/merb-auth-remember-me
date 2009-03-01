@@ -1,51 +1,43 @@
 ### MerbAuthRememberMe
 
-This plugin provides a remember me function based on MerbAuth. Most of codes are from [RestfulAuthentication on Rails](http://github.com/technoweenie/restful-authentication/tree/master)  
+This plugin provides a remember me strategy for Merb Auth. The original plugin was built by Pun Neng (http://github.com/PunNeng/).
 
-This plugin adds a mixin that you should include in your user model to provide 2 fields to remember the token and time to expire. The mixin will automatically select the correct sub mixin for all supported orms.  
- 
-<pre><code>class User
-  include DataMapper::Resource
-  include Merb::Authentication::Mixins::AuthenticatedUser
-
-  property :id,    Serial
-end
+The plugin also provides some Merb::Authentication.user_class mixins to keep the models fat and the strategy code thin. The mixins are added to the user class by default. If you choose not to include these and would rather roll your own set the plugin configuration in your config/init.rb file like so:
+<pre><code>
+  Merb::Plugins.config[:merb_auth_remember_me][:include_model_methods] = false
 </code></pre>
+
+This plugin automatically registers and activates the remember_me strategy with Merb Auth, so no additional configuration is necessary.
 
 ### Migration Requirements
 
-The mixin requires some fields to be in-place on your model.  Where needed include these in your migrations.  
-<pre><code>  :remember_token_expires_at, DateTime
-  :remember_token, String
+The plugin requires some fields your user authentication model. Right now there is ORM specific inclusions for Datamapper. The Sequel one needs to be built and a migration needs to be made for ActiveRecord. No migration generators are included but the plugin requires the following fields
+<pre><code>  
+  DateTime  :remember_token_expires_at
+  String    :remember_token
 </code></pre>
-
-### Configuration Options
-
-declare in your _merb/merb-auth/strategies.rb_ file  
-
-    Merb::Authentication.activate!(:remember_me) 
-    
 
 ------------------------------------------------------------------------------  
 
 ### Instructions for installation:
 
-Rake tasks to package/install the gem - edit this to modify the manifest.  
+# Add the plugin as a regular dependency in your dependency.rb file
 
-file: config/dependencies.rb
+    dependency 'rughetto-merb-auth-remember-me', :require_as => 'merb-auth-remember-me'
 
-# add the plugin as a regular dependency
+# To clear the :auth\_token after log out
 
-    dependency 'pn-merb-auth-remember-me'
+Unpack the merb-auth-password application code if it hasn't been done already:
+<pre><code>
+  bin/rake slices:merb-auth-slice-password:freeze  
+</code></pre>    
+   
+Change the #destroy method in slices/merb-auth-slice-password/app/controllers/session_override.rb to include     
+<pre><code>
+  cookies.delete :auth_token
+</code></pre>
+    
+# Add the right form inputs into your unauthenticated.html.erb (login) page 
 
-file: slice/merb-auth-slice-password/app/controllers/sessions.rb or the logout action  
-
-# clear :auth\_token after log out
-
-    cookies.delete :auth_token
-
-In your unauthenticated.html.erb(Login page)  
-
-    %input#rememberme{ :name => "remember_me" , :type => "checkbox", :value => "1"}
-        Remember Me
+  <input type="checkbox" id="remember_me" name="remember_me" value="1">
 

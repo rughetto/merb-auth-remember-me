@@ -1,5 +1,2 @@
 TODO:
-Fix LICENSE with your name
-Fix Rakefile with your name and contact info
-Add your code to lib/pn-remember-me.rb
-Add your Merb rake tasks to lib/pn-remember-me/merbtasks.rb
+make token refresh with each request ??

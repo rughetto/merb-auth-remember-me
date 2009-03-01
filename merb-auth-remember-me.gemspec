@@ -2,17 +2,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{merb-auth-remember-me}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Surasit Liangpornrattana"]
+  s.authors = ["Surasit Liangpornrattana", "Rue the Ghetto"]
   s.date = %q{2009-02-27}
   s.description = %q{Merb plugin that provides remember me for merb-auth-slice-password}
-  s.email = %q{punneng@gmail.com}
+  s.email = %q{ru_ghetto@rubyghetto.com}
   s.extra_rdoc_files = ["README", "LICENSE", "TODO"]
   s.files = ["LICENSE", "README", "Rakefile", "TODO", "lib/merb-auth-remember-me", "lib/merb-auth-remember-me/merbtasks.rb", "lib/merb-auth-remember-me/mixins", "lib/merb-auth-remember-me/mixins/authenticated_user", "lib/merb-auth-remember-me/mixins/authenticated_user/ar_authenticated_user.rb", "lib/merb-auth-remember-me/mixins/authenticated_user/dm_authenticated_user.rb", "lib/merb-auth-remember-me/mixins/authenticated_user/sq_authenticated_user.rb", "lib/merb-auth-remember-me/mixins/authenticated_user.rb", "lib/merb-auth-remember-me/strategies", "lib/merb-auth-remember-me/strategies/remember_me.rb", "lib/merb-auth-remember-me.rb", "spec/merb-auth-remember-me_spec.rb", "spec/mixins", "spec/mixins/authenticated_user_spec.rb", "spec/spec_helper.rb", "spec/strategies", "spec/strategies/remember_me_spec.rb"]
   s.has_rdoc = true
-  s.homepage = %q{https://github.com/PunNeng/pn-merb-auth-remember-me}
+  s.homepage = %q{https://github.com/rughetto/merb-auth-remember-me}
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{merb}
   s.rubygems_version = %q{1.3.1}
